@@ -1,23 +1,14 @@
+
+
+
 {
-  "name": "recipe",
+  "name": "recipe-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Recipe backend API",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/32sunny/Recipe.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/32sunny/Recipe/issues"
-  },
-  "homepage": "https://github.com/32sunny/Recipe#readme",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
