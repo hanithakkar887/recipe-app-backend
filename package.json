@@ -18,8 +18,10 @@
     "url": "https://github.com/hanithakkar887/recipe-app-backend/issues"
   },
   "homepage": "https://github.com/hanithakkar887/recipe-app-backend/#readme",
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
@@ -31,8 +33,3 @@
     "nodemon": "^3.1.9"
   }
 }
-
-
-
-
-
