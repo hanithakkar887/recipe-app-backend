@@ -10,6 +10,11 @@ app.use(cors());
 
 app.use(express.json())
 
+app.get("/", (req, res) => {
+  res.send("Recipe App Backend is running 🚀");
+});
+
+
 app.use('/auth' , authRoute )
 
 

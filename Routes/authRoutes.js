@@ -50,26 +50,54 @@ authRoute.get('/users', async (req, res) => {
 
 
 // Register route
-authRoute.post('/register', async (req, res) => {
-    try {
-        const { Username, email, password } = req.body;
-        // console.log("red")
-        const hashPassword = await bcrypt.hash(password, 10);
+// authRoute.post('/register', async (req, res) => {
+//     try {
+//         const { Username, email, password } = req.body;
+//         // console.log("red")
+//         const hashPassword = await bcrypt.hash(password, 10);
         
-        const newUser = await User.create({ 
-            Username,
-            email,
-            password: hashPassword,
-        });
-        await newUser.save()
+//         const newUser = await User.create({ 
+//             Username,
+//             email,
+//             password: hashPassword,
+//         });
+//         await newUser.save()
         
 
-        res.status(201).json({ message: 'User registered successfully' })
-    } catch (error) {
-        console.error('Registration error:', error);
-        res.status(500).json({ error: 'Failed to register' });
+//         res.status(201).json({ message: 'User registered successfully' })
+//     } catch (error) {
+//         console.error('Registration error:', error);
+//         res.status(500).json({ error: 'Failed to register' });
+//     }
+// });
+authRoute.post('/register', async (req, res) => {
+  try {
+    const { Username, email, password } = req.body;
+
+    if (!Username || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
     }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    await User.create({
+      Username,
+      email,
+      password: hashPassword
+    });
+
+    res.status(201).json({ message: "User registered successfully ✅" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
 });
+
 
 // Login route
 authRoute.post('/login', async (req, res) => {
